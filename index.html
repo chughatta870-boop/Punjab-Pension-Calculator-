@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Punjab Pension Calculator 2026</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0d6efd">
+</head>
+<body>
+  <div class="container">
+    <h1>🏛️ Punjab Pension Calculator</h1>
+    <p>Govt of Punjab - Rules 2024</p>
+
+    <div class="input-box">
+      <label>Pension Type:</label>
+      <select id="type" onchange="toggleFields()">
+        <option value="normal">1. Normal Retirement</option>
+        <option value="family">2. Family Pension</option>
+        <option value="medical">3. Medical/Invalid Retirement</option>
+      </select>
+
+      <label>Last 36 Months ki Total Basic Pay:</label>
+      <input type="number" id="totalBasic" placeholder="Rs. 3600000">
+      
+      <div id="serviceDiv">
+        <label>Total Qualifying Service in Years:</label>
+        <input type="number" id="service" placeholder="30" step="0.1">
+      </div>
+
+      <div id="ageDiv">
+        <label>Age at Retirement:</label>
+        <input type="number" id="age" placeholder="60">
+      </div>
+
+      <div id="leaveDiv">
+        <label>Earned Leave Balance in Days: Max 365</label>
+        <input type="number" id="leave" placeholder="365" max="365">
+      </div>
+
+      <div id="commDiv">
+        <label>Graduation Commutation %:</label>
+        <select id="commutation">
+          <option value="0">0% - No Commutation</option>
+          <option value="25">25% - Max Commutation</option>
+        </select>
+      </div>
+
+      <div id="familyDiv" class="hide">
+        <label>Family Pension %:</label>
+        <select id="familyPercent">
+          <option value="75">75% - Widow/Widower</option>
+          <option value="50">50% - Children</option>
+        </select>
+      </div>
+      
+      <button onclick="calculate()">📊 Calculate Pension</button>
+    </div>
+
+    <div id="result" class="hide">
+      <h2>Result Card</h2>
+      <div id="resultBox"></div>
+      <div class="btn-group">
+        <button onclick="downloadPDF()">📥 Download</button>
+        <button onclick="shareResult()">📤 Share</button>
+      </div>
+    </div>
+  </div>
+<script src="script.js"></script>
+<script>
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('sw.js');
+}
+</script>
+</body>
+</html>
